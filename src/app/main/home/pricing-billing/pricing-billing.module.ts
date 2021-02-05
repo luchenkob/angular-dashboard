@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -28,6 +29,8 @@ import { PricingBillingComponent } from './pricing-billing.component';
 import { PricingPlansComponent } from './pricing-plans/pricing-plans.component';
 import { BillingUsageComponent } from './billing-usage/billing-usage.component';
 import { MyStripeComponent } from './my-stripe/my-stripe.component';
+import { UpgradePlanComponent } from './uprage-plans/upgrade-plan.component';
+
 
 const routes: Routes = [
     {
@@ -36,6 +39,7 @@ const routes: Routes = [
         children: [
             { path: 'plans', component: PricingPlansComponent },
             { path: 'usage', component: BillingUsageComponent },
+            { path: 'upgrade/:id', component: UpgradePlanComponent }
         ],
     },
 ];
@@ -69,7 +73,15 @@ const routes: Routes = [
         MatProgressSpinnerModule,
 
         StripeModule,
+        MatRadioModule,
     ],
-    declarations: [PricingBillingComponent, PricingPlansComponent, BillingUsageComponent, MyStripeComponent],
+    declarations: [
+        PricingBillingComponent,
+        PricingPlansComponent,
+        BillingUsageComponent,
+        MyStripeComponent,
+        UpgradePlanComponent
+    ],
 })
-export class PricingBillingModule {}
+export class PricingBillingModule {
+}

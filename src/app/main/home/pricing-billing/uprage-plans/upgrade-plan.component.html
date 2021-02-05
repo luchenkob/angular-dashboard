@@ -1,0 +1,55 @@
+<div class="upgrade">
+    <div class="upgrade-container">
+        <div class="upgrade-header">
+            <div class="upgrade-header-title">Upgrade to {{ currentPlan.title }} (750 Tasks) Plan</div>
+            <div class="upgrade-header-subtitle">Upgrade account: <span>agodoy@gmail.com</span></div>
+        </div>
+        <div class="upgrade-switcher">
+            <form class="upgrade-switcher-form" [formGroup]="form">
+                <mat-radio-group aria-label="Select an option" formControlName="options">
+                    <mat-radio-button value="1" [class.checked]>
+                        <div class="switcher-title">Pay Annually <span>save 20%</span></div>
+                        <div class="switcher-subtitle">{{ currentPlan.options[0].price | currency }} USD per month</div>
+                    </mat-radio-button>
+                    <mat-radio-button value="2">
+                        <div class="switcher-title">Pay Monthly</div>
+                        <div class="switcher-subtitle">{{ currentPlan.options[0].priceMonthly | currency }} USD per month</div>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </form>
+        </div>
+        <div class="upgrade-payment">
+            <div class="title-block">Payment Details</div>
+            <div class="upgrade-payment-container">
+                <div class="upgrade-payment-container-title">
+                    No Payment Info
+                </div>
+                <main-my-stripe></main-my-stripe>
+            </div>
+        </div>
+        <div class="upgrade-summary">
+            <div class="title-block">Summary</div>
+            <div class="upgrade-summary-container">
+                <div class="upgrade-summary-container-title">
+                    Upgrade to {{ currentPlan.title }} (750 Tasks) Plan
+                    <span>{{ currentPlan.options[0].price | currency }} USD</span>
+                </div>
+                <div class="upgrade-summary-container-subtitle">
+                    Amount being charged today
+                    <span>{{ currentPlan.options[0].priceMonthly | currency }} USD</span>
+                </div>
+                <div class="upgrade-summary-container-info">
+                    {{ currentPlan.subtitle }}
+                </div>
+            </div>
+        </div>
+        <div class="upgrade-buttons">
+            <div class="upgrade-buttons-cancel">
+                <button mat-button>Cancel</button>
+            </div>
+            <div class="upgrade-buttons-upgrade">
+                <button mat-button color="primary">Upgrade My Account</button>
+            </div>
+        </div>
+    </div>
+</div>

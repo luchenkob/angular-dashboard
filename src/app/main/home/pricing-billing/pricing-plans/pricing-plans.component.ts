@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BillingService } from 'app/services/billing.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'main-pricing-plans',
@@ -7,7 +8,8 @@ import { BillingService } from 'app/services/billing.service';
     styleUrls: ['./pricing-plans.component.scss'],
 })
 export class PricingPlansComponent implements OnInit {
-    constructor(public billingService: BillingService) {}
+
+    constructor(public billingService: BillingService, private router: Router) {}
 
     ngOnInit(): void {}
 
@@ -16,4 +18,12 @@ export class PricingPlansComponent implements OnInit {
     isInt(x: number): boolean {
         return x === Math.floor(x);
     }
+
+    /**
+     * Navigation to upgrade plan
+     */
+    navigateToUpgradePlan(id: number): void {
+        this.router.navigateByUrl(`/home/billing/upgrade/${id}`);
+    }
+
 }

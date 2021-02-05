@@ -1,14 +1,12 @@
-<div class="my-container">
-    <!-- HEADER -->
-    <div style="margin-top: 100px !important">
-        <div class="header" fxLayout="row" fxLayoutAlign="start center">Plans &<br />Pricing</div>
-        <h2>Whether your time-saving<br />automation needs are large or small,<br />we’re here to help you scale.</h2>
-    </div>
-    <!-- / HEADER -->
+<!-- HEADER -->
+<div class="header-prising">
+    <div class="header" fxLayout="row" fxLayoutAlign="start center">Plans &<br/>Pricing</div>
+    <h2>Whether your time-saving<br/>automation needs are large or small,<br/>we’re here to help you scale.</h2>
 </div>
+<!-- / HEADER -->
 <!-- CONTENT -->
 <div class="cards">
-    <div class="cards-item" *ngFor="let plan of billingService.pricingPlans">
+    <div class="cards-item" *ngFor="let plan of billingService.pricingPlans; let i = index">
         <div class="popular-card" (click)="select(plan)">
             <div class="price-row">
                 <div class="dollar">$</div>
@@ -50,7 +48,7 @@
                 </ng-template>
             </div>
 
-            <div class="popular-button" style="width: 100%" [routerLink]="['/home/billing/usage']">Upgrade</div>
+            <div class="popular-button" style="width: 100%" (click)="navigateToUpgradePlan(i + 1)">Upgrade</div>
         </div>
 
         <div class="features">

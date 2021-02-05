@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class BillingService {
+
     billingMethods = [
         { svg: 'assets/billing/american-express.svg', title: '' },
         { svg: 'assets/billing/diners-club.svg', title: '' },
@@ -15,15 +16,17 @@ export class BillingService {
 
     pricingPlans: IPricingPlan[] = [
         {
+            id: 1,
             title: 'Free',
             subtitle: 'Anyone can automate their work. Start with the basics.',
             optionId: 0,
-            options: [{ price: 0, priceMonthly: null, tasksPerMonth: 100 }],
+            options: [{ price: 0, priceMonthly: 0, tasksPerMonth: 100 }],
             limitZaps: 5,
             limitUpdateTime: 15,
             features: ['Single-step Zaps'],
         },
         {
+            id: 2,
             title: 'Starter',
             subtitle: 'Unleash the power of automation.',
             optionId: 0,
@@ -36,6 +39,7 @@ export class BillingService {
             features: ['Multi-step Zaps', '3 Premium Apps', 'Filters', 'Formatters', 'Connections Via Webhooks'],
         },
         {
+            id: 3,
             title: 'Professional',
             subtitle: 'Advanced tools to take your work to the next level.',
             optionId: 0,
@@ -58,6 +62,7 @@ export class BillingService {
             ],
         },
         {
+            id: 4,
             title: 'Team',
             subtitle: 'Bring your team together to collaborate on automation.',
             optionId: 0,
@@ -85,6 +90,7 @@ export class BillingService {
             ],
         },
         {
+            id: 5,
             title: 'Company',
             subtitle: 'Automation plus enterprise-grade features.',
             optionId: 0,
@@ -126,6 +132,7 @@ export class BillingService {
 }
 
 export interface IPricingPlan {
+    id: number;
     title: string;
     subtitle: string;
     optionId: number;

@@ -1,0 +1,155 @@
+:host {
+    background: white;
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+
+    .title-block {
+        font-size: 15px;
+        padding:  10px 0;
+    }
+
+    .upgrade {
+
+        &-container {
+            max-width: 1024px;
+            margin: 20px auto;
+            padding: 0 30px;
+            border: 1px solid silver;
+            border-radius: 5px;
+        }
+
+        &-header {
+
+            &-title {
+                font-size: 26px;
+                text-align: center;
+                font-weight: 500;
+                padding: 50px 0 0 0;
+                line-height: 30px;
+            }
+
+            &-subtitle {
+                font-size: 14px;
+                color: #666666;
+                text-align: center;
+                line-height: 30px;
+                padding: 15px 0 0 0;
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        &-switcher {
+            margin: 20px 0 0 0;
+
+            &-form {
+
+                mat-radio-group {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    mat-radio-button {
+                        width: 49%;
+                        border: 1px solid silver;
+                        padding: 10px 20px;
+                        border-radius: 4px;
+
+                        .switcher-title {
+                            font-weight: 700;
+
+                            span {
+                                background: #336acf;
+                                padding: 3px 5px;
+                                color: #ffffff;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                font-size: 11px;
+                                border-radius: 10px;
+                                margin: 0 0 0 5px;
+                            }
+                        }
+
+                        .switcher-subtitle {
+                            line-height: 30px;
+                        }
+                    }
+
+                }
+            }
+
+            &-block {
+                width: 48%;
+                border: 1px solid silver;
+                border-radius: 4px;
+            }
+        }
+
+        &-payment {
+
+            &-container {
+                border: 1px dotted silver;
+                padding: 10px 20px;
+                border-radius: 10px;
+                
+                &-title {
+                    font-weight: 600;
+                    text-align: center;
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+            }
+        }
+
+        &-summary {
+
+            &-container{
+                border: 1px solid silver;
+                border-radius: 4px;
+
+                &-title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px;
+                    border-bottom: 1px solid silver;
+                    font-size: 13px;
+
+                    span {
+
+                    }
+                }
+
+                &-subtitle {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 10px;
+                    border-bottom: 1px solid silver;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+
+                &-info {
+                    background: #d5dfe7;
+                    color: #353535;
+                    font-size: 13px;
+                    padding: 10px;
+                }
+            }
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 30px 0;
+
+            &-upgrade {
+                background: #e1ebf3;
+            }
+        }
+    }
+}
