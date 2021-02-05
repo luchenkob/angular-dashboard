@@ -2,16 +2,16 @@
     <div class="upgrade-container">
         <div class="upgrade-header">
             <div class="upgrade-header-title">Upgrade to {{ currentPlan.title }} (750 Tasks) Plan</div>
-            <div class="upgrade-header-subtitle">Upgrade account: <span>agodoy@gmail.com</span></div>
+            <div class="upgrade-header-subtitle">Upgrade account: <span>{{ userEmail }}</span></div>
         </div>
         <div class="upgrade-switcher">
             <form class="upgrade-switcher-form" [formGroup]="form">
                 <mat-radio-group aria-label="Select an option" formControlName="options">
-                    <mat-radio-button value="1" [class.checked]>
+                    <mat-radio-button value="1" [class.checked]="!chooseBlockPay" (change)="changeChooseBlock()">
                         <div class="switcher-title">Pay Annually <span>save 20%</span></div>
                         <div class="switcher-subtitle">{{ currentPlan.options[0].price | currency }} USD per month</div>
                     </mat-radio-button>
-                    <mat-radio-button value="2">
+                    <mat-radio-button value="2" [class.checked]="chooseBlockPay" (change)="changeChooseBlock()">
                         <div class="switcher-title">Pay Monthly</div>
                         <div class="switcher-subtitle">{{ currentPlan.options[0].priceMonthly | currency }} USD per month</div>
                     </mat-radio-button>
@@ -39,7 +39,15 @@
                     <span>{{ currentPlan.options[0].priceMonthly | currency }} USD</span>
                 </div>
                 <div class="upgrade-summary-container-info">
-                    {{ currentPlan.subtitle }}
+                    <p>You authorize Zapier to charge you for the amount above.</p>
+
+                    <p>Your subscription renews each year until you cancel</p>
+
+                    <p>The next charge will be <span>{{ currentPlan.options[0].price | currency }} USD</span>,
+                        minus any applicable discounts, on <span>February 02, 2022</span>.</p>
+
+                    <p>By clicking the button below, you understand and agree to these terms and Zapier's
+                    <a>privacy policy</a> and <a>terms of service</a>.</p>
                 </div>
             </div>
         </div>

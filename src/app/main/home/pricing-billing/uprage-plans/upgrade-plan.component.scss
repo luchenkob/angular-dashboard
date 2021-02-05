@@ -2,10 +2,15 @@
     background: white;
     font-family: 'Open Sans', sans-serif;
     width: 100%;
+    box-sizing: border-box;
 
     .title-block {
         font-size: 15px;
         padding:  10px 0;
+    }
+
+    .checked {
+        box-shadow: 0px -1px 2px 1px rgb(77, 133, 234);
     }
 
     .upgrade {
@@ -134,9 +139,13 @@
 
                 &-info {
                     background: #d5dfe7;
-                    color: #353535;
+                    color: #868686;
                     font-size: 13px;
                     padding: 10px;
+
+                    span {
+                        font-weight: 700;
+                    }
                 }
             }
         }

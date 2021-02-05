@@ -16,9 +16,23 @@
         letter-spacing: -1px;
         line-height: 70px;
 
+        @media (max-width: 700px) {
+            font-size: 40px;
+            line-height: 45px;
+        }
+        
         &-prising {
             margin-top: 100px;
             padding: 0 130px;
+
+            @media (max-width: 1239px) {
+                padding: 0 70px;
+            }
+
+            @media (max-width: 519px) {
+                margin-top: 50px;
+                padding: 0 25px;
+            }
         }
     }
 
@@ -26,6 +40,10 @@
         font-size: 24px;
         font-weight: 700;
         line-height: 30px;
+
+        @media (max-width: 700px) {
+            font-size: 19px;
+        }
     }
 
     .cards {
@@ -34,12 +52,32 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        
+        @media (max-width: 1239px) {
+            padding: 50px 60px;
+        }
+
+        @media (max-width: 700px) {
+            padding: 10px 60px;
+        }
+
+        @media (max-width: 519px) {
+            padding: 10px 15px;
+        }
+
+        @media (max-width: 429px) {
+            justify-content: center;
+        }
 
         &-item {
             flex: 1 1 20%;
             max-width: 20%;
             min-width: 200px;
             padding: 10px;
+
+            @media (max-width: 429px) {
+                max-width: 100%;
+            }
         }
     }
 
