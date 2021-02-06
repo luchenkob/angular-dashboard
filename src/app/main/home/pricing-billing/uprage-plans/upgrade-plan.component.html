@@ -7,11 +7,11 @@
         <div class="upgrade-switcher">
             <form class="upgrade-switcher-form" [formGroup]="form">
                 <mat-radio-group aria-label="Select an option" formControlName="options">
-                    <mat-radio-button value="1" [class.checked]="!chooseBlockPay" (change)="changeChooseBlock()">
+                    <mat-radio-button value="price" [class.checked]="!chooseBlockPay" (change)="changeChooseBlock()">
                         <div class="switcher-title">Pay Annually <span>save 20%</span></div>
                         <div class="switcher-subtitle">{{ currentPlan.options[0].price | currency }} USD per month</div>
                     </mat-radio-button>
-                    <mat-radio-button value="2" [class.checked]="chooseBlockPay" (change)="changeChooseBlock()">
+                    <mat-radio-button value="priceMonthly" [class.checked]="chooseBlockPay" (change)="changeChooseBlock()">
                         <div class="switcher-title">Pay Monthly</div>
                         <div class="switcher-subtitle">{{ currentPlan.options[0].priceMonthly | currency }} USD per month</div>
                     </mat-radio-button>
@@ -32,11 +32,11 @@
             <div class="upgrade-summary-container">
                 <div class="upgrade-summary-container-title">
                     Upgrade to {{ currentPlan.title }} (750 Tasks) Plan
-                    <span>{{ currentPlan.options[0].price | currency }} USD</span>
+                    <span>{{ (currentPlan.options[0][form.value.options] * 12) | currency }} USD</span>
                 </div>
                 <div class="upgrade-summary-container-subtitle">
                     Amount being charged today
-                    <span>{{ currentPlan.options[0].priceMonthly | currency }} USD</span>
+                    <span>{{ (currentPlan.options[0][form.value.options] * 12) | currency }} USD</span>
                 </div>
                 <div class="upgrade-summary-container-info">
                     <p>You authorize Zapier to charge you for the amount above.</p>

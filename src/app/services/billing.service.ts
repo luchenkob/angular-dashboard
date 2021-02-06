@@ -17,7 +17,7 @@ export class BillingService {
     pricingPlans: IPricingPlan[] = [
         {
             id: 1,
-            title: 'Free',
+            title: 'free',
             subtitle: 'Anyone can automate their work. Start with the basics.',
             optionId: 0,
             options: [{ price: 0, priceMonthly: 0, tasksPerMonth: 100 }],
@@ -27,11 +27,11 @@ export class BillingService {
         },
         {
             id: 2,
-            title: 'Starter',
+            title: 'starter',
             subtitle: 'Unleash the power of automation.',
             optionId: 0,
             options: [
-                { price: 19.99, priceMonthly: 24.99, tasksPerMonth: 750 },
+                { price: 12, priceMonthly: 15, tasksPerMonth: 750 },
                 { price: 39, priceMonthly: 48.75, tasksPerMonth: 1500 },
             ],
             limitZaps: 5,
@@ -40,11 +40,11 @@ export class BillingService {
         },
         {
             id: 3,
-            title: 'Professional',
+            title: 'professional',
             subtitle: 'Advanced tools to take your work to the next level.',
             optionId: 0,
             options: [
-                { price: 49, priceMonthly: 61.25, tasksPerMonth: 2000 },
+                { price: 52, priceMonthly: 65, tasksPerMonth: 2000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
@@ -63,11 +63,11 @@ export class BillingService {
         },
         {
             id: 4,
-            title: 'Team',
+            title: 'team',
             subtitle: 'Bring your team together to collaborate on automation.',
             optionId: 0,
             options: [
-                { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
+                { price: 79.20, priceMonthly: 99, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
@@ -91,7 +91,7 @@ export class BillingService {
         },
         {
             id: 5,
-            title: 'Company',
+            title: 'company',
             subtitle: 'Automation plus enterprise-grade features.',
             optionId: 0,
             options: [

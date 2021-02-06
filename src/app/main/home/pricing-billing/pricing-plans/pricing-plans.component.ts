@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class PricingPlansComponent implements OnInit {
 
+    /** current plan id */
+    currentPlan = 'free';
+
     constructor(public billingService: BillingService, private router: Router) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+
+    }
 
     select(): void {}
 
@@ -22,7 +27,7 @@ export class PricingPlansComponent implements OnInit {
     /**
      * Navigation to upgrade plan
      */
-    navigateToUpgradePlan(id: number): void {
+    navigateToUpgradePlan(id: string): void {
         this.router.navigateByUrl(`/home/billing/upgrade/${id}`);
     }
 

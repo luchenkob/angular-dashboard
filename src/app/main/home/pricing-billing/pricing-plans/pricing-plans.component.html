@@ -6,8 +6,8 @@
 <!-- / HEADER -->
 <!-- CONTENT -->
 <div class="cards">
-    <div class="cards-item" *ngFor="let plan of billingService.pricingPlans; let i = index">
-        <div class="popular-card" (click)="select(plan)">
+    <div class="cards-item" *ngFor="let plan of billingService.pricingPlans">
+        <div class="popular-card" (click)="select()" [class.current-plan]="plan.title === currentPlan">
             <div class="price-row">
                 <div class="dollar">$</div>
                 <div class="integer">{{ (plan.options[plan.optionId].price | number: '1.2-2').split('.')[0] }}</div>
@@ -48,7 +48,13 @@
                 </ng-template>
             </div>
 
-            <div class="popular-button" style="width: 100%" (click)="navigateToUpgradePlan(i + 1)">Upgrade</div>
+            <div class="popular-button" *ngIf="plan.title !== currentPlan"
+                 (click)="navigateToUpgradePlan(plan.title)">Upgrade
+            </div>
+
+            <div class="popular-button-selected" *ngIf="plan.title === currentPlan">
+                Current Plan
+            </div>
         </div>
 
         <div class="features">

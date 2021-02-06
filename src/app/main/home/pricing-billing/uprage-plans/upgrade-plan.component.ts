@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { BillingService, IPricingPlan } from 'app/services/billing.service';
-import { AuthService } from '../../../../auth/auth.service';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
     selector: 'main-upgrade-plan',
@@ -14,8 +14,7 @@ import { AuthService } from '../../../../auth/auth.service';
 export class UpgradePlanComponent implements OnInit, OnDestroy {
 
     unsubscribe: Subject<void> = new Subject<void>();
-
-    /** current plan */
+    /** current select plan */
     currentPlan: IPricingPlan;
     /** change selection option */
     chooseBlockPay =  false;
@@ -56,10 +55,10 @@ export class UpgradePlanComponent implements OnInit, OnDestroy {
      *
      */
     private getCurrentPricingPlan(): void {
-        const id = +this.activeRouter.snapshot.params['id'];
+        const id = this.activeRouter.snapshot.params['id'];
 
         this.currentPlan = this.billingService.pricingPlans.filter(
-            (plans) => plans.id === id)[0];
+            (plans) => plans.title === id)[0];
 
     }
 
@@ -69,7 +68,7 @@ export class UpgradePlanComponent implements OnInit, OnDestroy {
      */
     private initialForm(): void {
         this.form = this.fb.group({
-            options: ['1']
+            options: ['price']
         })
     }
 
