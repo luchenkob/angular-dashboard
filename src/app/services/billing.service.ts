@@ -24,6 +24,7 @@ export class BillingService {
             limitZaps: 5,
             limitUpdateTime: 15,
             features: ['Single-step Zaps'],
+            priceId: 'prod_ItI7miVVjxTjP2'
         },
         {
             id: 2,
@@ -37,6 +38,7 @@ export class BillingService {
             limitZaps: 5,
             limitUpdateTime: 15,
             features: ['Multi-step Zaps', '3 Premium Apps', 'Filters', 'Formatters', 'Connections Via Webhooks'],
+            priceId: 'prod_ItI7miVVjxTjP2'
         },
         {
             id: 3,
@@ -60,6 +62,7 @@ export class BillingService {
                 'Custom Logic - Paths',
                 'Auto Replay',
             ],
+            priceId: 'prod_ItI7miVVjxTjP2'
         },
         {
             id: 4,
@@ -88,44 +91,7 @@ export class BillingService {
                 'Shared App Connections',
                 'Shared Workspace',
             ],
-        },
-        {
-            id: 5,
-            title: 'company',
-            subtitle: 'Automation plus enterprise-grade features.',
-            optionId: 0,
-            options: [
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-                { price: 599, priceMonthly: 748.75, tasksPerMonth: 100000 },
-            ],
-            limitZaps: 5,
-            limitUpdateTime: 15,
-            features: [
-                'Multi-step Zaps',
-                'Unlimited Premium Apps',
-                'Filters',
-                'Formatters',
-                'Connections Via Webhooks',
-                'Custom Logic - Paths',
-                'Auto Replay',
-                'Unlimited Users',
-                'Folder Permissions',
-                'Premier Support',
-                'Shared App Connections',
-                'Shared Workspace',
-                'Advanced Admin Permissions',
-                'User Provisioning (SCIM)',
-                'Apps Restrictions',
-                'SAML Single Sign On (SSO)',
-                'Custom Data Retention',
-                'Account Consolidation',
-                'Live Training With Customer Success',
-            ],
+            priceId: 'prod_ItI7miVVjxTjP2'
         },
     ];
     constructor() {}
@@ -140,6 +106,7 @@ export interface IPricingPlan {
     limitZaps: number | 'Unlimited';
     limitUpdateTime: number;
     features: string[];
+    priceId: string;
 }
 
 export interface IPricingOption {

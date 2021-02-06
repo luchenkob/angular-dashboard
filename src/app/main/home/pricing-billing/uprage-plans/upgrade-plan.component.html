@@ -18,15 +18,21 @@
                 </mat-radio-group>
             </form>
         </div>
-        <div class="upgrade-payment">
+
+        <div class="upgrade-payment" *ngIf="!detailCard">
             <div class="title-block">Payment Details</div>
             <div class="upgrade-payment-container">
                 <div class="upgrade-payment-container-title">
-                    No Payment Info
+                    Please add your payment info
                 </div>
-                <main-my-stripe></main-my-stripe>
+                <main-my-stripe (dataCard)="getDataCard($event)"></main-my-stripe>
             </div>
         </div>
+
+        <div class="upgrade-payment" *ngIf="detailCard">
+            <div class="title-block">Payment Details (Success)</div>
+        </div>
+
         <div class="upgrade-summary">
             <div class="title-block">Summary</div>
             <div class="upgrade-summary-container">
@@ -53,10 +59,10 @@
         </div>
         <div class="upgrade-buttons">
             <div class="upgrade-buttons-cancel">
-                <button mat-button>Cancel</button>
+                <button mat-button routerLink="/home/billing/plans">Cancel</button>
             </div>
             <div class="upgrade-buttons-upgrade">
-                <button mat-button color="primary">Upgrade My Account</button>
+                <button mat-button color="primary" (click)="upgradeMyAccount()">Upgrade My Account</button>
             </div>
         </div>
     </div>
