@@ -24,7 +24,7 @@ export class BillingService {
             limitZaps: 5,
             limitUpdateTime: 15,
             features: ['Single-step Zaps'],
-            priceId: 'prod_ItI7miVVjxTjP2'
+            priceId: 'prod_ItI7miVVjxTjP2',
         },
         {
             id: 2,
@@ -38,7 +38,8 @@ export class BillingService {
             limitZaps: 5,
             limitUpdateTime: 15,
             features: ['Multi-step Zaps', '3 Premium Apps', 'Filters', 'Formatters', 'Connections Via Webhooks'],
-            priceId: 'prod_ItI7miVVjxTjP2'
+            priceId: 'prod_ItI7miVVjxTjP2',
+            generalPrice: 144,
         },
         {
             id: 3,
@@ -46,7 +47,7 @@ export class BillingService {
             subtitle: 'Advanced tools to take your work to the next level.',
             optionId: 0,
             options: [
-                { price: 52, priceMonthly: 65, tasksPerMonth: 2000 },
+                { price: 56, priceMonthly: 65, tasksPerMonth: 2000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
                 { price: 89, priceMonthly: 111.25, tasksPerMonth: 5000 },
@@ -62,7 +63,8 @@ export class BillingService {
                 'Custom Logic - Paths',
                 'Auto Replay',
             ],
-            priceId: 'prod_ItI7miVVjxTjP2'
+            priceId: 'prod_ItI7miVVjxTjP2',
+            generalPrice: 672,
         },
         {
             id: 4,
@@ -70,7 +72,7 @@ export class BillingService {
             subtitle: 'Bring your team together to collaborate on automation.',
             optionId: 0,
             options: [
-                { price: 79.20, priceMonthly: 99, tasksPerMonth: 50000 },
+                { price: 85, priceMonthly: 99, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
                 { price: 299, priceMonthly: 373.75, tasksPerMonth: 50000 },
@@ -91,7 +93,8 @@ export class BillingService {
                 'Shared App Connections',
                 'Shared Workspace',
             ],
-            priceId: 'prod_ItI7miVVjxTjP2'
+            priceId: 'prod_ItI7miVVjxTjP2',
+            generalPrice: 1020,
         },
     ];
     constructor() {}
@@ -107,6 +110,7 @@ export interface IPricingPlan {
     limitUpdateTime: number;
     features: string[];
     priceId: string;
+    generalPrice?: number;
 }
 
 export interface IPricingOption {
