@@ -1,0 +1,69 @@
+<div class="upgrade">
+    <div class="upgrade-container">
+        <div class="upgrade-header">
+            <div class="upgrade-header-title">Upgrade to {{ currentPlan.title }} (750 Tasks) Plan</div>
+            <div class="upgrade-header-subtitle">Upgrade account: <span>{{ userEmail }}</span></div>
+        </div>
+        <div class="upgrade-switcher">
+            <form class="upgrade-switcher-form" [formGroup]="form">
+                <mat-radio-group aria-label="Select an option" formControlName="options">
+                    <mat-radio-button value="price" [class.checked]="!chooseBlockPay" (change)="changeChooseBlock()">
+                        <div class="switcher-title">Pay Annually <span>save 20%</span></div>
+                        <div class="switcher-subtitle">{{ currentPlan.options[0].price | currency }} USD per month</div>
+                    </mat-radio-button>
+                    <mat-radio-button value="priceMonthly" [class.checked]="chooseBlockPay" (change)="changeChooseBlock()">
+                        <div class="switcher-title">Pay Monthly</div>
+                        <div class="switcher-subtitle">{{ currentPlan.options[0].priceMonthly | currency }} USD per month</div>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </form>
+        </div>
+
+        <div class="upgrade-payment" *ngIf="!detailCard">
+            <div class="title-block">Payment Details</div>
+            <div class="upgrade-payment-container">
+                <div class="upgrade-payment-container-title">
+                    Please add your payment info
+                </div>
+                <main-my-stripe (dataCard)="getDataCard($event)"></main-my-stripe>
+            </div>
+        </div>
+
+        <div class="upgrade-payment" *ngIf="detailCard">
+            <div class="title-block">Payment Details (Success)</div>
+        </div>
+
+        <div class="upgrade-summary">
+            <div class="title-block">Summary</div>
+            <div class="upgrade-summary-container">
+                <div class="upgrade-summary-container-title">
+                    Upgrade to {{ currentPlan.title }} (750 Tasks) Plan
+                    <span>{{ (currentPlan.options[0][form.value.options] * 12) | currency }} USD</span>
+                </div>
+                <div class="upgrade-summary-container-subtitle">
+                    Amount being charged today
+                    <span>{{ (currentPlan.options[0][form.value.options] * 12) | currency }} USD</span>
+                </div>
+                <div class="upgrade-summary-container-info">
+                    <p>You authorize Zapier to charge you for the amount above.</p>
+
+                    <p>Your subscription renews each year until you cancel</p>
+
+                    <p>The next charge will be <span>{{ currentPlan.options[0].price | currency }} USD</span>,
+                        minus any applicable discounts, on <span>February 02, 2022</span>.</p>
+
+                    <p>By clicking the button below, you understand and agree to these terms and Zapier's
+                    <a>privacy policy</a> and <a>terms of service</a>.</p>
+                </div>
+            </div>
+        </div>
+        <div class="upgrade-buttons">
+            <div class="upgrade-buttons-cancel">
+                <button mat-button routerLink="/home/billing/plans">Cancel</button>
+            </div>
+            <div class="upgrade-buttons-upgrade">
+                <button mat-button color="primary" (click)="upgradeMyAccount()">Upgrade My Account</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,4 +12,5 @@ export const environment = {
         measurementId: 'G-XEBP2BKKLP',
     },
     stripeKey: 'pk_test_51IGQwJEkLTSFmURGyD5HAVrOUzRxEOjjlU6aNPZ5fW2Uo7O9N532VEQkbl7vXdXAAlFWllCX5hFiZ55JfQ4sZA8t00rFh16Ltj',
+    secretKey: 'sk_test_51IGQwJEkLTSFmURGrBTbyBdl3c0nuTGKsw8zX4idTavIX3O0dWZX7A4JLcZfy9cq2gbydph43m0vdxxopPmxKdi9008wlCZOyd'
 };

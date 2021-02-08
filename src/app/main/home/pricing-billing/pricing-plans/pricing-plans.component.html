@@ -1,15 +1,13 @@
-<div class="my-container">
-    <!-- HEADER -->
-    <div style="margin-top: 100px !important">
-        <div class="header" fxLayout="row" fxLayoutAlign="start center">Plans &<br />Pricing</div>
-        <h2>Whether your time-saving<br />automation needs are large or small,<br />we’re here to help you scale.</h2>
-    </div>
-    <!-- / HEADER -->
+<!-- HEADER -->
+<div class="header-prising">
+    <div class="header" fxLayout="row" fxLayoutAlign="start center">Plans &<br/>Pricing</div>
+    <h2>Whether your time-saving<br/>automation needs are large or small,<br/>we’re here to help you scale.</h2>
 </div>
+<!-- / HEADER -->
 <!-- CONTENT -->
 <div class="cards">
     <div class="cards-item" *ngFor="let plan of billingService.pricingPlans">
-        <div class="popular-card" (click)="select(plan)">
+        <div class="popular-card" (click)="select()" [class.current-plan]="plan.title === currentPlan">
             <div class="price-row">
                 <div class="dollar">$</div>
                 <div class="integer">{{ (plan.options[plan.optionId].price | number: '1.2-2').split('.')[0] }}</div>
@@ -50,7 +48,13 @@
                 </ng-template>
             </div>
 
-            <div class="popular-button" style="width: 100%" [routerLink]="['/home/billing/usage']">Upgrade</div>
+            <div class="popular-button" *ngIf="plan.title !== currentPlan"
+                 (click)="navigateToUpgradePlan(plan.title)">Upgrade
+            </div>
+
+            <div class="popular-button-selected" *ngIf="plan.title === currentPlan">
+                Current Plan
+            </div>
         </div>
 
         <div class="features">

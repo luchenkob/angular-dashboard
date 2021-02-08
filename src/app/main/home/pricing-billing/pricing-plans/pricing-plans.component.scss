@@ -15,12 +15,35 @@
         font-weight: 800;
         letter-spacing: -1px;
         line-height: 70px;
+
+        @media (max-width: 700px) {
+            font-size: 40px;
+            line-height: 45px;
+        }
+        
+        &-prising {
+            margin-top: 100px;
+            padding: 0 130px;
+
+            @media (max-width: 1239px) {
+                padding: 0 70px;
+            }
+
+            @media (max-width: 519px) {
+                margin-top: 50px;
+                padding: 0 25px;
+            }
+        }
     }
 
     h2 {
         font-size: 24px;
         font-weight: 700;
         line-height: 30px;
+
+        @media (max-width: 700px) {
+            font-size: 19px;
+        }
     }
 
     .cards {
@@ -29,13 +52,38 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        
+        @media (max-width: 1239px) {
+            padding: 50px 60px;
+        }
+
+        @media (max-width: 700px) {
+            padding: 10px 60px;
+        }
+
+        @media (max-width: 519px) {
+            padding: 10px 15px;
+        }
+
+        @media (max-width: 429px) {
+            justify-content: center;
+        }
 
         &-item {
             flex: 1 1 20%;
             max-width: 20%;
             min-width: 200px;
             padding: 10px;
+
+            @media (max-width: 429px) {
+                max-width: 100%;
+            }
         }
+    }
+
+    .current-plan {
+        box-shadow: rgba(0, 0, 0, 0.1) 0 20px 30px 0 !important;
+        background-color: rgb(255, 255, 255) !important;
     }
 
     .popular-button {
@@ -44,12 +92,24 @@
         font-size: larger;
         font-weight: 700;
         background-color: rgb(19, 107, 245);
-        width: fit-content;
+        width: 100%;
         padding: 10px 20px;
         border-radius: 10px;
         color: white;
         transition-timing-function: ease-in-out;
         transition-duration: 300ms;
+    }
+
+    .popular-button-selected {
+        margin-top: 10px;
+        text-align: center;
+        font-size: larger;
+        font-weight: 700;
+        background-color: rgb(243, 243, 243);
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #ababab;
+        width: 100%;
     }
 
     .popular-card {
@@ -61,12 +121,14 @@
         align-items: stretch;
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
         border: 1px solid rgb(230, 230, 230);
-        background-color: rgb(255, 255, 255);
+        background-color: rgb(243, 243, 243);
         padding: 18px 18px 50px 18px;
         cursor: pointer;
 
         &:hover {
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0 20px 30px 0;
+            background-color: rgb(255, 255, 255);
+
             .popular-button {
                 background-color: rgb(38, 85, 189);
             }
@@ -135,6 +197,7 @@
             color: rgb(51, 51, 51);
             vertical-align: baseline;
             margin: 15px 0;
+            text-transform: capitalize;
         }
 
         .subtitle {

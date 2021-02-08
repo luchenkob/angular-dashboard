@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BillingService } from 'app/services/billing.service';
 
 @Component({
@@ -12,27 +12,40 @@ export class MyStripeComponent implements OnInit {
     cardDetailsFilledOut: any;
     extraData: any;
 
+    /** Data card */
+    @Output() dataCard = new EventEmitter<stripe.paymentMethod.PaymentMethod>();
+
+
+    /** information about card */
+   // detailInfoCard: stripe.paymentMethod.PaymentMethod;
+    detailInfoCard: any;
+
+
     constructor(public billingService: BillingService) {}
 
-    ngOnInit() {}
+    ngOnInit(): void {
 
-    onStripeInvalid(error: Error) {
+    }
+
+    onStripeInvalid(error: Error): void {
         console.log('Validation Error', error);
     }
 
-    onStripeError(error: Error) {
+    onStripeError(error: Error): void {
         console.error('Stripe error', error);
     }
 
-    setPaymentMethod(token: stripe.paymentMethod.PaymentMethod) {
+    setPaymentMethod(token: stripe.paymentMethod.PaymentMethod): void {
+        this.detailInfoCard = this.dataCard.emit(token);
+
         console.log('Stripe Payment Method', token);
     }
 
-    setStripeToken(token: stripe.Token) {
+    setStripeToken(token: stripe.Token): void {
         console.log('Stripe Token', token);
     }
 
-    setStripeSource(source: stripe.Source) {
+    setStripeSource(source: stripe.Source): void {
         console.log('Stripe Source', source);
     }
 }
