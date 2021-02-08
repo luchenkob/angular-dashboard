@@ -254,6 +254,17 @@
         margin: 50px 130px 100px 130px;
         border-top: 1px solid silver;
 
+        @media (max-width: 1239px) {
+            margin: 50px 60px;
+        }
+
+        @media (max-width: 700px) {
+            margin: 10px 60px;
+        }
+
+        @media (max-width: 519px) {
+            margin: 10px 15px;
+        }
 
         &-title {
             font-size: 30px;
@@ -261,6 +272,10 @@
             text-align: center;
             line-height: 35px;
             padding: 20px 0 0 0;
+
+            @media (max-width: 515px) {
+                font-size: 22px;
+            }
         }
 
         &-list {
