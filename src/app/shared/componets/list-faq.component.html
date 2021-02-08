@@ -1,0 +1,14 @@
+<mat-accordion class="faqs-accordion">
+    <mat-expansion-panel
+        *ngFor="let faq of listFaqs; let i = index"
+        [expanded]="currentOpenStep === i"
+        (opened)="openQuestion(i)">
+        <mat-expansion-panel-header>
+            <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="mr-12 s-20 secondary-text">help_outline</mat-icon>
+                {{ faq.question }}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        {{ faq.answer }}
+    </mat-expansion-panel>
+</mat-accordion>

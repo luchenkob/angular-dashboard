@@ -8,12 +8,13 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 import { FaqService } from 'app/main/pages/faq/faq.service';
 import { FaqComponent } from 'app/main/pages/faq/faq.component';
+import { ListFaqModule } from 'app/shared/componets/list-faq.module';
 
 const routes = [
     {
-        path     : 'faq',
+        path: 'faq',
         component: FaqComponent,
-        resolve  : {
+        resolve: {
             faq: FaqService
         }
     }
@@ -23,18 +24,17 @@ const routes = [
     declarations: [
         FaqComponent
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
-
         MatExpansionModule,
         MatIconModule,
-
-        FuseSharedModule
+        FuseSharedModule,
+        ListFaqModule
     ],
-    providers   : [
+    providers: [
         FaqService
     ]
 })
-export class FaqModule
-{
+export class FaqModule {
+
 }

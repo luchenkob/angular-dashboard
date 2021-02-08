@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import { BillingService, IPricingPlan } from 'app/services/billing.service';
 import { AuthService } from 'app/auth/auth.service';
 import { environment } from '../../../../../environments/environment';
+import { StripeService } from '../../../../services/stripe.service';
+import { takeUntil } from 'rxjs/operators';
 
 
 
@@ -35,6 +37,7 @@ export class UpgradePlanComponent implements OnInit, OnDestroy {
         private activeRouter: ActivatedRoute,
         private fb: FormBuilder,
         private authService: AuthService,
+        private stripeService: StripeService
     ) {
     }
 
@@ -64,19 +67,26 @@ export class UpgradePlanComponent implements OnInit, OnDestroy {
      * Upgrade account
      */
     upgradeMyAccount(): void {
+        if (this.detailCard) {
+
+            const detailPlan = {
+                planTitle: this.currentPlan.title,
+                priceId: this.currentPlan.priceId,
+                sumPrice: this.currentPlan.options[0][this.form.value.options]
+            }
+
+            const request = {...this.detailCard, detailPlan};
 
 
-        const configSession = {
-            successUrl: 'http://127.0.0.1',
-            cancelUrl: 'http://127.0.0.1',
-            payment_method_types: ['card'],
-            line_items: [
-                { price: 'price_1IHVWzEkLTSFmURGRp3jc98q', quantity: 1 },
-            ],
-            mode: 'payment',
-        };
+            this.stripeService.sendDetailsPayments(request).pipe(
+                takeUntil(this.unsubscribe)).subscribe((result) => {
 
-        this.paymentHandler.redirectToCheckout(configSession);
+                    if (result) {
+                        console.log('Success');
+                    }
+            });
+
+        }
     }
 
     /**
