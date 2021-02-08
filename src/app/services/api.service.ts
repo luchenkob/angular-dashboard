@@ -135,6 +135,13 @@ export class ApiService {
     }
 
     /**
+     * Get all signal
+     */
+    getAllSignals(): Promise<any> {
+        return this.request(HttpMethod.GET, '/flow/signals')
+    }
+
+    /**
      * Creates new flow
      */
     createFlow(data: IFlow): Promise<IFlow> {

@@ -14,7 +14,7 @@ export interface IFlowStep {
     amount?: number;
     createdAt?: Date;
     executedAt?: Date;
-    signalType?: 'price_below' | 'price_above' | 'wait_seconds';
+    signalType?: 'SWA' | 'SMA' | 'wait_seconds' | 'MACD';
     signalOptions?: ISignalOptions;
     order?: any;
     children?: IFlowStep[]; // only on the editor

@@ -18,6 +18,8 @@ export class FlowService {
     activeStep: IFlowStep;
     unsavedChanges = false;
 
+    // all signal
+    signal: any;
     // for dragenter & dragleave
     draggedItemType: IFlowStepType;
 
@@ -40,6 +42,8 @@ export class FlowService {
     }
 
     async loadFlow(flowId: string): Promise<void> {
+        await this.flowsService.fetchAllData();
+
         this.flowId = flowId;
         const flow = await this.flowsService.getFlow(flowId);
         this.flow = this.order2tree(flow);
@@ -48,6 +52,7 @@ export class FlowService {
         this.nextFlow();
 
         this.isValidFlow(this.flow);
+
     }
 
     async saveFlow(forced = false): Promise<void> {
@@ -62,6 +67,7 @@ export class FlowService {
             });
         }
         const flow = this.tree2order(this.flow);
+
         this.flowsService.updateFlow(this.flowId, flow);
 
         this.unsavedChanges = false;
@@ -112,6 +118,17 @@ export class FlowService {
             }
             order++;
         });
+
+        // steps[0].ticker = '';
+        // steps[0].signalType = this.signal.id;
+        // steps[0].signalOptions = {
+        //     interval: '30min',
+        //     time_period: 10,
+        //     series_type: flow.status,
+        //     compare: 'crosses_above'
+        // }
+
+        console.log(steps);
 
         steps.forEach((step) => {
             if (typeof step._id === 'number') delete step._id; // this number _id is generated on the frontend temporarily

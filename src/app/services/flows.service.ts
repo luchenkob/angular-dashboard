@@ -13,6 +13,8 @@ export class FlowsService {
     flows: IFlow[];
     flows$ = new Subject<IFlow[]>();
 
+    allSignals$: Subject<any> = new Subject<any>();
+
     constructor(private apiService: ApiService, public ngZone: NgZone, private router: Router, private snackbar: MatSnackBar) {}
 
     private next(data?: IFlow | IFlow[]): void {
@@ -29,7 +31,16 @@ export class FlowsService {
 
     async fetchFlows(): Promise<void> {
         const flows = await this.apiService.getFlows();
+
         this.next(flows);
+    }
+
+    async fetchAllData(): Promise<void> {
+        const allSignal = await this.apiService.getAllSignals();
+
+        if (allSignal) {
+            this.allSignals$.next(allSignal);
+        }
     }
 
     async createFlow(data: IFlow): Promise<IFlow> {
