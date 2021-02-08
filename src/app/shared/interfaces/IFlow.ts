@@ -15,7 +15,7 @@ export interface IFlowStep {
     createdAt?: Date;
     executedAt?: Date;
     signalType?: 'price_below' | 'price_above' | 'wait_seconds';
-    signalValue?: number;
+    signalOptions?: ISignalOptions;
     order?: any;
     children?: IFlowStep[]; // only on the editor
 }
@@ -26,4 +26,11 @@ export interface IFlow {
     status?: IFlowStatus;
     steps?: IFlowStep[];
     log?: string[];
+}
+
+export interface ISignalOptions {
+    interval: string;
+    time_period: number;
+    series_type: string;
+    compare: string;
 }

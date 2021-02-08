@@ -213,7 +213,7 @@ export class FlowService {
 
     isValidStep(step: IFlowStep): boolean {
         if (step.type === 'signal') {
-            if (!step.signalType || step.signalValue === undefined || step.signalValue === null) return false;
+            if (!step.signalType || step.signalOptions === undefined || step.signalOptions === null) return false;
             if (step.signalType !== 'wait_seconds' && (!step.ticker || step.ticker.length === 0)) return false;
         } else {
             if (!step.ticker || step.ticker.length === 0) return false;
