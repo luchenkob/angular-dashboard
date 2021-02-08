@@ -24,12 +24,13 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StripeModule } from 'stripe-angular';
 
 import { SharedModule } from 'app/shared/shared.module';
-
 import { PricingBillingComponent } from './pricing-billing.component';
 import { PricingPlansComponent } from './pricing-plans/pricing-plans.component';
 import { BillingUsageComponent } from './billing-usage/billing-usage.component';
 import { MyStripeComponent } from './my-stripe/my-stripe.component';
 import { UpgradePlanComponent } from './uprage-plans/upgrade-plan.component';
+import { FaqService } from 'app/main/pages/faq/faq.service';
+import { ListFaqModule } from 'app/shared/componets/list-faq.module';
 
 
 const routes: Routes = [
@@ -74,6 +75,7 @@ const routes: Routes = [
 
         StripeModule,
         MatRadioModule,
+        ListFaqModule,
     ],
     declarations: [
         PricingBillingComponent,
@@ -82,6 +84,9 @@ const routes: Routes = [
         MyStripeComponent,
         UpgradePlanComponent
     ],
+    providers: [
+        FaqService
+    ]
 })
 export class PricingBillingModule {
 }

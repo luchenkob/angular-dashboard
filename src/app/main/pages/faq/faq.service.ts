@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { IFaqsList } from './IFaqsList';
 
 @Injectable()
 export class FaqService implements Resolve<any>
@@ -58,4 +59,24 @@ export class FaqService implements Resolve<any>
                 }, reject);
         });
     }
+
+    /**
+     * Get faqs for pricing plans page
+     */
+    fetchFaqForPricing(): Observable<IFaqsList[]> {
+       // return this._httpClient.get<IFaqsList[]>('this/will/url');
+
+        return of([
+            {
+                answer: 'First answer',
+                question: 'First question'
+            },
+            {
+                answer: 'Second answer',
+                question: 'Second question'
+            }
+        ]);
+
+    }
+    
 }

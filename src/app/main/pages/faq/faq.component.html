@@ -17,19 +17,7 @@
 
     <!-- CONTENT -->
     <div class="content px-16 py-24 px-sm-24 py-sm-32">
-
-        <mat-accordion class="faqs-accordion">
-
-            <mat-expansion-panel *ngFor="let faq of faqsFiltered; let i = index" [expanded]="step === i" (opened)="setStep(i)">
-                <mat-expansion-panel-header>
-                    <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="mr-12 s-20 secondary-text">help_outline</mat-icon>
-                        {{faq.question}}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                {{faq.answer}}
-            </mat-expansion-panel>
-        </mat-accordion>
+        <main-list-faq [listFaqs]="faqsFiltered"></main-list-faq>
     </div>
     <!-- / CONTENT -->
 

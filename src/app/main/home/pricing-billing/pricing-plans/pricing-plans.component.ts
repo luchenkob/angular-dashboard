@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BillingService } from 'app/services/billing.service';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+import { FaqService } from 'app/main/pages/faq/faq.service';
+import { IFaqsList } from 'app/main/pages/faq/IFaqsList';
+import { BillingService } from 'app/services/billing.service';
 
 @Component({
     selector: 'main-pricing-plans',
@@ -9,13 +14,21 @@ import { Router } from '@angular/router';
 })
 export class PricingPlansComponent implements OnInit {
 
+    unsubscribe: Subject<void> = new Subject<void>();
+
     /** current plan id */
     currentPlan = 'free';
+    /** list prising faq */
+    listFaqs: IFaqsList[];
 
-    constructor(public billingService: BillingService, private router: Router) {}
+    constructor(
+        public billingService: BillingService,
+        private router: Router,
+        private faqService: FaqService
+    ) {}
 
     ngOnInit(): void {
-
+        this.initialListFaqs();
     }
 
     select(): void {}
@@ -31,4 +44,11 @@ export class PricingPlansComponent implements OnInit {
         this.router.navigateByUrl(`/home/billing/upgrade/${id}`);
     }
 
+    /** get list faq for page pricing plan */
+    initialListFaqs(): void {
+        this.faqService.fetchFaqForPricing().pipe(
+            takeUntil(this.unsubscribe)).subscribe((pricingFaqs: IFaqsList[]) => {
+            this.listFaqs = pricingFaqs;
+        });
+    }
 }

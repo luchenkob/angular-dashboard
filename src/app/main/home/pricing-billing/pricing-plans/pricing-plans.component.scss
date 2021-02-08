@@ -248,4 +248,24 @@
             margin: 10px 20px 20px;
         }
     }
+
+    .faq {
+
+        margin: 50px 130px 100px 130px;
+        border-top: 1px solid silver;
+
+
+        &-title {
+            font-size: 30px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 35px;
+            padding: 20px 0 0 0;
+        }
+
+        &-list {
+            margin-top: 40px;
+        }
+        
+    }
 }
