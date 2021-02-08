@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { IFlow } from 'app/shared/interfaces/IFlow';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +13,7 @@ export class FlowsService {
     flows: IFlow[];
     flows$ = new Subject<IFlow[]>();
 
-    allSignals$: Subject<any> = new Subject<any>();
+    public allSignals$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
     constructor(private apiService: ApiService, public ngZone: NgZone, private router: Router, private snackbar: MatSnackBar) {}
 

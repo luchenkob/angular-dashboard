@@ -250,6 +250,8 @@ export class FlowService {
             return v;
         });
 
+        console.log('steps', this.flow.steps);
+
         this.unsavedChanges = true;
         this.nextFlow();
 
