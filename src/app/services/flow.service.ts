@@ -128,10 +128,9 @@ export class FlowService {
         //     compare: 'crosses_above'
         // }
 
-        console.log(steps);
-
         steps.forEach((step) => {
             if (typeof step._id === 'number') delete step._id; // this number _id is generated on the frontend temporarily
+            if (step.children) delete step.children;
             if (step.children) delete step.children;
         });
 
@@ -249,8 +248,6 @@ export class FlowService {
             }
             return v;
         });
-
-        console.log('steps', this.flow.steps);
 
         this.unsavedChanges = true;
         this.nextFlow();
