@@ -31,7 +31,9 @@ export class DetailPanelComponent implements OnChanges {
                 ...(step.type === 'signal'
                     ? {
                           signalType: [step.signalType, Validators.required],
-                          signalValue: [step.signalValue, Validators.required],
+                          signalOptions: {
+
+                          },
                       }
                     : {
                           amount: [step.amount, [Validators.required, Validators.pattern(/\d{1,}/), Validators.min(1), Validators.max(9999)]],

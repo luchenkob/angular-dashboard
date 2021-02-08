@@ -29,8 +29,8 @@ export interface IFlow {
 }
 
 export interface ISignalOptions {
-    interval: string;
-    time_period: number;
-    series_type: string;
-    compare: string;
+    interval?: string;
+    time_period?: number;
+    series_type?: string;
+    compare?: string;
 }

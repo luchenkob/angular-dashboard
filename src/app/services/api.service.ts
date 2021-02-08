@@ -53,11 +53,11 @@ export class ApiService {
     private catchError({ error, message }): Observable<never> {
         const errors = error && error.message ? error.message : message;
 
-        // const msg = this.parseError(errors);
+        const msg = this.parseError(errors);
 
-        if (errors) {
+        if (errors && msg) {
             this.ngZone.run(() => {
-                this.snackbar.open(`Error: ${errors}`, 'close', {
+                this.snackbar.open(`Error: ${msg[0][0].toUpperCase() + msg[0].slice(1)}`, 'close', {
                     horizontalPosition: 'end',
                     verticalPosition: 'top',
                     duration: 3000,
@@ -72,11 +72,15 @@ export class ApiService {
 
     private parseError(errors): string {
 
+        const msg = [];
+
         if (errors) {
-            return  errors.message.forEach((message) => {
-                return Object.values(message.constraints).join('\n');
+            errors.forEach((message) => {
+                msg.push(Object.values(message.constraints));
             });
         }
+
+        return msg[0];
     }
 
     private mapResponse<T>({ message, data }: HttpResponse<T>): T {
