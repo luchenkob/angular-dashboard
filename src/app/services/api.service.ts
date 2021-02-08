@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { IFlow } from '../shared/interfaces/IFlow';
-import { throwError, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { IAccount, IAccountApp } from '../shared/interfaces/IAccount';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -51,12 +51,13 @@ export class ApiService {
     }
 
     private catchError({ error, message }): Observable<never> {
-        console.log(error, message);
-        const msg = error && error.message ? error.message : message;
+        const errors = error && error.message ? error.message : message;
 
-        if (msg) {
+        // const msg = this.parseError(errors);
+
+        if (errors) {
             this.ngZone.run(() => {
-                this.snackbar.open(`Error: ${msg}`, 'close', {
+                this.snackbar.open(`Error: ${errors}`, 'close', {
                     horizontalPosition: 'end',
                     verticalPosition: 'top',
                     duration: 3000,
@@ -65,7 +66,17 @@ export class ApiService {
             });
         }
 
-        return throwError(msg);
+        return throwError(errors);
+    }
+
+
+    private parseError(errors): string {
+
+        if (errors) {
+            return  errors.message.forEach((message) => {
+                return Object.values(message.constraints).join('\n');
+            });
+        }
     }
 
     private mapResponse<T>({ message, data }: HttpResponse<T>): T {
