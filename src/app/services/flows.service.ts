@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { IFlow } from 'app/shared/interfaces/IFlow';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class FlowsService {
     flows: IFlow[];
     flows$ = new Subject<IFlow[]>();
+
+    public allSignals$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
     constructor(private apiService: ApiService, public ngZone: NgZone, private router: Router, private snackbar: MatSnackBar) {}
 
@@ -29,7 +31,16 @@ export class FlowsService {
 
     async fetchFlows(): Promise<void> {
         const flows = await this.apiService.getFlows();
+
         this.next(flows);
+    }
+
+    async fetchAllData(): Promise<void> {
+        const allSignal = await this.apiService.getAllSignals();
+
+        if (allSignal) {
+            this.allSignals$.next(allSignal);
+        }
     }
 
     async createFlow(data: IFlow): Promise<IFlow> {

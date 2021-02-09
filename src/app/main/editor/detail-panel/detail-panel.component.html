@@ -24,7 +24,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Signal Type</mat-label>
                             <mat-select formControlName="signalType">
-                                <mat-option *ngFor="let type of signalTypes" [value]="type">{{ type | signalType }}</mat-option>
+                                <mat-option *ngFor="let type of signalTypes" [value]="type">{{ type.id | signalType }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </ng-container>
@@ -36,13 +36,28 @@
                             formControlName="ticker"
                         ></main-ticker-search>
 
-                        <ng-container *ngIf="form.get('signalValue')">
-                            <mat-form-field appearance="outline">
-                                <mat-label>{{ form.get('signalType').value | signalType }}</mat-label>
-                                <input autocomplete="off" matInput type="number" formControlName="signalValue" />
+                        <ng-container *ngFor="let field of form.get('signalType')?.value.fields">
+                            <mat-form-field appearance="outline" *ngIf="field.type !== 'select'">
+                                <mat-label>{{ field.label  }}</mat-label>
+                                <input autocomplete="off" matInput [type]="field.type" (change)="optionChanged(field.key, $event)" />
                                 <mat-error> This field is required </mat-error>
                             </mat-form-field>
+
+                            <mat-form-field appearance="outline" *ngIf="field.type === 'select'">
+                                <mat-label>{{ field.label  }}</mat-label>
+                                <mat-select  (selectionChange)="optionChanged(field.key, $event)">
+                                    <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </ng-container>
+
+                        <!-- <ng-container *ngIf="form.get('signalOptions')">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{ form.get('signalType').value | signalType }}</mat-label>
+                                <input autocomplete="off" matInput type="number" formControlName="signalOptions" />
+                                <mat-error> This field is required </mat-error>
+                            </mat-form-field>
+                        </ng-container> -->
                     </ng-container>
                 </ng-container>
                 <ng-template #elseTemplate>
