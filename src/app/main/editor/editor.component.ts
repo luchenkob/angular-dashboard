@@ -228,6 +228,7 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onChangeFlowTitle(title): void {
-        this.flowService.updateEditingFlow(this.flow, { title });
+        // this.flowService.updateEditingFlow(this.flow, { title });
+        this.flowsService.updateFlow(this.flowId, this.flow);
     }
 }

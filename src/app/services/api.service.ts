@@ -152,7 +152,7 @@ export class ApiService {
      * Updates a flow
      */
     updateFlow(id: string, data: IFlow): Promise<IFlow> {
-        const d = {steps: data.steps};
+        const d = {steps: data.steps, title: data.title, status: data.status};
         return this.request(HttpMethod.PUT, `/flow/${id}`, d);
     }
 

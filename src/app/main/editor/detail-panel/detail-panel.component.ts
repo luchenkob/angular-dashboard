@@ -36,8 +36,6 @@ export class DetailPanelComponent implements OnInit, OnChanges {
                     this.options = step.signalOptions;
                 }
 
-                console.log('steop', step);
-
                 this.form = this.fb.group({
                     type: step.type,
                     ...(step.type === 'signal' && step.signalType === 'wait_seconds' ? {} : { ticker: [step.ticker], }),
