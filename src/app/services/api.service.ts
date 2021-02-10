@@ -26,7 +26,7 @@ interface HttpResponse<T> {
 export class ApiService {
     tokenId?: string;
 
-    constructor(private auth: AngularFireAuth, private http: HttpClient, private snackbar: MatSnackBar, private ngZone: NgZone) { }
+    constructor(private auth: AngularFireAuth, private http: HttpClient, private snackbar: MatSnackBar, private ngZone: NgZone) {}
 
     private async getHeaders(): Promise<Record<string, string>> {
         if (!this.tokenId) {
@@ -152,7 +152,7 @@ export class ApiService {
      * Updates a flow
      */
     updateFlow(id: string, data: IFlow): Promise<IFlow> {
-        const d = { steps: data.steps };
+        const d = {steps: data.steps};
         return this.request(HttpMethod.PUT, `/flow/${id}`, d);
     }
 
