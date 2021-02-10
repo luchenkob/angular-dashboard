@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IFlow, IFlowStep, SIGNAL_TYPES } from 'app/shared/interfaces/IFlow';
+import { IFlowStep } from 'app/shared/interfaces/IFlow';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlowService } from 'app/services/flow.service';
 import { FlowsService } from 'app/services/flows.service';
@@ -14,7 +14,6 @@ export class DetailPanelComponent implements OnInit, OnChanges {
     @Input() step: IFlowStep;
     @Input() editable: boolean;
 
-    // signalTypes = SIGNAL_TYPES;
     signalTypes: any[];
     signalType: any;
     form?: FormGroup;
@@ -35,8 +34,6 @@ export class DetailPanelComponent implements OnInit, OnChanges {
                 if (step.type === 'signal') {
                     this.options = step.signalOptions;
                 }
-
-                console.log('steop', step);
 
                 this.form = this.fb.group({
                     type: step.type,
@@ -76,12 +73,11 @@ export class DetailPanelComponent implements OnInit, OnChanges {
         }
 
         const cloneForm = {...this.form.value};
+        const signalType = this.form.value['signalType'];
 
         if (this.options) {
-            this.form.controls['signalOptions'].setValue(this.options);
             cloneForm['signalOptions'] = this.options;
         }
-        const signalType = this.form.value['signalType'];
         if (signalType && signalType.id) {
             cloneForm['signalType'] = signalType.id;
         }
@@ -89,10 +85,8 @@ export class DetailPanelComponent implements OnInit, OnChanges {
         this.flowService.updateStep(this.step._id, cloneForm);
     }
 
-    optionChanged(type, evt): void {
-        if (!this.options) {
-            this.options = {};
-        }
+    optionChanged(type: string, evt: Event | any): void {
+        this.options = this.options ? this.options : {};
         this.options[type] = evt.value ? evt.value : evt.target.value;
     }
 
