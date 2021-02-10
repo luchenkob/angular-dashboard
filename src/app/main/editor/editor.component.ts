@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlowService } from 'app/services/flow.service';
 import { Subscription } from 'rxjs';
 import { IFlow } from 'app/shared/interfaces/IFlow';
+import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 
 declare const EasyPZ;
 
@@ -205,6 +206,20 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dialog.open(DetailsComponent, {
             data: this.flow,
         });
+    }
+
+    openConfirmDialog(): void {
+        if (this.flowService.unsavedChanges) {
+            const dialogRef = this.dialog.open(FuseConfirmDialogComponent, {});
+
+            dialogRef.afterClosed().subscribe(confirm => {
+                if (confirm) {
+                    this.router.navigate(['/home/strategies']);
+                }
+            })
+        } else {
+            this.router.navigate(['/home/strategies']);
+        }
     }
 
     onToggleFlowStatus(checked: boolean): void {
