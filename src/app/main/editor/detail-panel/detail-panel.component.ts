@@ -74,12 +74,11 @@ export class DetailPanelComponent implements OnInit, OnChanges {
         }
 
         const cloneForm = {...this.form.value};
+        const signalType = this.form.value['signalType'];
 
         if (this.options) {
-            this.form.controls['signalOptions'].setValue(this.options);
             cloneForm['signalOptions'] = this.options;
         }
-        const signalType = this.form.value['signalType'];
         if (signalType && signalType.id) {
             cloneForm['signalType'] = signalType.id;
         }
@@ -87,10 +86,8 @@ export class DetailPanelComponent implements OnInit, OnChanges {
         this.flowService.updateStep(this.step._id, cloneForm);
     }
 
-    optionChanged(type, evt): void {
-        if (!this.options) {
-            this.options = {};
-        }
+    optionChanged(type: string, evt: Event | any): void {
+        this.options = this.options ? this.options : {};
         this.options[type] = evt.value ? evt.value : evt.target.value;
     }
 
