@@ -23,7 +23,7 @@
                     <ng-container *ngIf="form.get('signalType')">
                         <mat-form-field appearance="outline">
                             <mat-label>Signal Type</mat-label>
-                            <mat-select formControlName="signalType">
+                            <mat-select formControlName="signalType" (selectionChange)="typeChanged($event)">
                                 <mat-option *ngFor="let type of signalTypes" [value]="type">{{ type.id | signalType }}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -39,14 +39,16 @@
                         <ng-container *ngFor="let field of form.get('signalType')?.value.fields">
                             <mat-form-field appearance="outline" *ngIf="field.type !== 'select'">
                                 <mat-label>{{ field.label  }}</mat-label>
-                                <input autocomplete="off" matInput [type]="field.type" (change)="optionChanged(field.key, $event)" />
+                                <input autocomplete="off" matInput  [(value)]="options[field.key]" [type]="field.type" (change)="optionChanged(field.key, $event)" />
                                 <mat-error> This field is required </mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" *ngIf="field.type === 'select'">
                                 <mat-label>{{ field.label  }}</mat-label>
-                                <mat-select  (selectionChange)="optionChanged(field.key, $event)">
-                                    <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
+                                <mat-select (selectionChange)="optionChanged(field.key, $event)" [(value)]="options[field.key]">
+                                    <mat-option 
+                                    *ngFor="let option of field.options"
+                                    [value]="option">{{ option }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </ng-container>
