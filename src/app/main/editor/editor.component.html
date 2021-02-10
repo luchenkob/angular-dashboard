@@ -4,9 +4,9 @@
     </div>
 
     <div class="editor-topbar">
-        <button mat-stroked-button [routerLink]="['/home/strategies']" class="cancel-button" [disableRipple]="true">
+        <button mat-stroked-button (click)="openConfirmDialog()" class="cancel-button" [disableRipple]="true">
             <mat-icon>keyboard_backspace</mat-icon>
-            <span>Cancel</span>
+            <span>Back</span>
         </button>
 
         <div style="margin-left: 20px" *ngIf="flow">

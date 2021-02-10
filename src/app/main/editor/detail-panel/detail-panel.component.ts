@@ -23,26 +23,32 @@ export class DetailPanelComponent implements OnInit, OnChanges {
     constructor(private fb: FormBuilder, private snackbar: MatSnackBar, public flowService: FlowService, public flowsService: FlowsService) {}
 
     ngOnInit(): void {
-        this.flowsService.allSignals$.subscribe(res => {
-            this.signalTypes = res;
-        });
+        this.flowsService.allSignals$.subscribe(res => this.signalTypes = res);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.step) {
             const step = changes.step.currentValue;
+            this.flowsService.allSignals$.subscribe(res => {
+                this.signalTypes = res;
+                const signalType = this.signalTypes.find(type => type.id === step.signalType);
+                if (step.type === 'signal') {
+                    this.options = step.signalOptions;
+                }
 
-            console.log('steop', step);
+                console.log('steop', step);
 
-            this.form = this.fb.group({
-                type: step.type,
-                ...(step.type === 'signal' && step.signalType === 'wait_seconds' ? {} : { ticker: [step.ticker], }),
-                ...(step.type === 'signal'
-                    ? { signalType: [step.signalType, Validators.required], signalOptions: {}, }
-                    : {
-                        amount: [step.amount, [Validators.required, Validators.pattern(/\d{1,}/), Validators.min(1), Validators.max(9999)]],
-                    }),
+                this.form = this.fb.group({
+                    type: step.type,
+                    ...(step.type === 'signal' && step.signalType === 'wait_seconds' ? {} : { ticker: [step.ticker], }),
+                    ...(step.type === 'signal'
+                        ? { signalType, signalOptions: this.options }
+                        : {
+                            amount: [step.amount, [Validators.required, Validators.pattern(/\d{1,}/), Validators.min(1), Validators.max(9999)]],
+                        }),
+                });
             });
+            
         }
 
         if (this.editable) this.form.enable();
@@ -59,13 +65,6 @@ export class DetailPanelComponent implements OnInit, OnChanges {
     }
 
     save(): void {
-        if (this.options) {
-            this.form.controls['signalOptions'].setValue(this.options);
-        }
-        const signalType = this.form.value['signalType'];
-        if (signalType && signalType.id) {
-            this.form.controls['signalType'].setValue(signalType.id);
-        }
         if (this.form.invalid) {
             this.snackbar.open('Invalid form data', 'close', {
                 horizontalPosition: 'end',
@@ -76,7 +75,18 @@ export class DetailPanelComponent implements OnInit, OnChanges {
             return;
         }
 
-        this.flowService.updateStep(this.step._id, this.form.value);
+        const cloneForm = {...this.form.value};
+
+        if (this.options) {
+            this.form.controls['signalOptions'].setValue(this.options);
+            cloneForm['signalOptions'] = this.options;
+        }
+        const signalType = this.form.value['signalType'];
+        if (signalType && signalType.id) {
+            cloneForm['signalType'] = signalType.id;
+        }
+
+        this.flowService.updateStep(this.step._id, cloneForm);
     }
 
     optionChanged(type, evt): void {
@@ -84,5 +94,12 @@ export class DetailPanelComponent implements OnInit, OnChanges {
             this.options = {};
         }
         this.options[type] = evt.value ? evt.value : evt.target.value;
+    }
+
+    typeChanged(evt): void {
+        this.options = {};
+        evt.value.fields.forEach(field => {
+            this.options[field.key] = null;
+        });
     }
 }

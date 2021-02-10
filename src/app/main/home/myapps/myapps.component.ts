@@ -13,6 +13,8 @@ import * as _ from 'lodash';
 })
 export class MyappsComponent implements OnInit {
     account: IAccount;
+    isSuccessResponse: boolean;
+    isErrorResponse: boolean;
 
     typeOptions = [
         { label: 'Paper', value: 'paper' },
@@ -26,10 +28,12 @@ export class MyappsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.clearResponse();
         this.accountService.fetchAccount();
     }
 
     onClickReset(appId: number): void {
+        this.clearResponse();
         if (window.confirm('Reset app? Current data will be lost.')) {
             this.account.apps[appId].editable = true;
             this.account.apps[appId].type = '';
@@ -38,12 +42,25 @@ export class MyappsComponent implements OnInit {
         }
     }
 
-    async save(appId: number): Promise<void> {
+    save(appId: number): Promise<void> {
+        this.clearResponse();
         this.account.apps[appId].editable = false;
         this.account.apps.forEach((app) => {
             delete app.editable;
             delete app.baseUrl;
         });
-        const newAccount = await this.accountService.updateAccountApp(this.account.apps[0]);
+        return this.accountService.updateAccountApp(this.account.apps[0])
+            .then(response => {
+                this.isSuccessResponse = true;
+            })
+            .catch(err => {
+                this.isErrorResponse = true;
+            })
+        
+    }
+
+    clearResponse(): void{
+        this.isErrorResponse = false;
+        this.isSuccessResponse = false;
     }
 }

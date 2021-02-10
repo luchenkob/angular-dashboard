@@ -15,7 +15,10 @@
                 <mat-card-title style="display: flex; align-items: center">
                     <img src="assets/images/alpaca.jpeg" class="app-img" />
                     <span>Alpaca API</span>
-                    <div style="flex: 1"></div>
+                    <div class="icon-status">
+                        <mat-icon *ngIf="isErrorResponse" style="color:tomato;">error_outline</mat-icon>
+                        <mat-icon *ngIf="isSuccessResponse" style="color:forestgreen">done_outline</mat-icon>
+                    </div>
                     <ng-container *ngIf="app.editable; else elseTemplate">
                         <button mat-stroked-button (click)="save(appId)" color="accent">
                             <mat-icon>save</mat-icon>
