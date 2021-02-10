@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IFlow, IFlowStep, SIGNAL_TYPES } from 'app/shared/interfaces/IFlow';
+import { IFlowStep } from 'app/shared/interfaces/IFlow';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FlowService } from 'app/services/flow.service';
 import { FlowsService } from 'app/services/flows.service';
@@ -14,7 +14,6 @@ export class DetailPanelComponent implements OnInit, OnChanges {
     @Input() step: IFlowStep;
     @Input() editable: boolean;
 
-    // signalTypes = SIGNAL_TYPES;
     signalTypes: any[];
     signalType: any;
     form?: FormGroup;
