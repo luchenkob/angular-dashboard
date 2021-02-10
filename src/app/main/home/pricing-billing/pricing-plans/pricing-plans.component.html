@@ -27,7 +27,7 @@
             <div class="title">{{ plan.title }}</div>
             <div class="subtitle">{{ plan.subtitle }}</div>
 
-            <div class="mt-24">
+            <!-- <div class="mt-24">
                 <ng-container *ngIf="plan.options.length == 1; else elseTemplate">
                     <button mat-stroked-button style="width: 100%; text-align: left">
                         {{ plan.options[plan.optionId].tasksPerMonth | number }} Tasks /mo
@@ -46,7 +46,7 @@
                         </ng-container>
                     </mat-menu>
                 </ng-template>
-            </div>
+            </div> -->
 
             <div class="popular-button" *ngIf="plan.title !== currentPlan"
                  (click)="navigateToUpgradePlan(plan.title)">Upgrade
