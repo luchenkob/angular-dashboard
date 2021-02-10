@@ -1,7 +1,7 @@
 :host {
     background: white;
     .header {
-        font-family: 'Open Sans', sans-serif;
+        font-family: "Open Sans", sans-serif;
         font-size: 40px;
         font-weight: 800;
         letter-spacing: -1px;
@@ -20,5 +20,17 @@
 
     .clickable:hover {
         cursor: pointer;
+    }
+
+    .icon-status {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        mat-icon {
+            font-size: 36px;
+            width: 36px;
+            height: 36px;
+        }
     }
 }
