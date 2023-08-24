@@ -1,0 +1,17 @@
+namespace: fuse
+fuse:
+  defines: runnable
+  metadata:
+    name: fuse
+    description: This is a dashboard application built with Angular
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    fuse:
+      build: .
+  services:
+    fuse-8080/tcp:
+      container: fuse
+      port: 8080
+      host-port: 8080
+      publish: false
+      protocol: TCP
