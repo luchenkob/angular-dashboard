@@ -1,0 +1,41 @@
+namespace: fuse
+fuse:
+  defines: runnable
+  metadata:
+    name: fuse
+    description: Angular Dashboard Application
+    icon: https://angular.io/assets/images/favicons/favicon.ico
+  containers:
+    fuse:
+      build: .
+  variables:
+    baseurl:
+      env: baseUrl
+      type: string
+      description: API base URL
+      value: https://api.octopus.markets
+    production:
+      env: production
+      type: string
+      description: Production environment flag
+      value: '''false'''
+    hmr:
+      env: hmr
+      type: string
+      description: Hot Module Replacement flag
+      value: '''false'''
+    firebaseconfig:
+      env: firebaseConfig
+      type: string
+      description: Firebase configuration
+      value: '!!!SETME-USE-SECRETS!!!'
+    stripekey:
+      env: stripeKey
+      type: string
+      description: Stripe public key
+      value: '!!!SETME-USE-SECRETS!!!'
+    secretkey:
+      env: secretKey
+      type: string
+      description: Secret key (Presumably for Stripe)
+      value: '!!!SETME-USE-SECRETS!!!'
